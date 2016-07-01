@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html ng-app="productsApp">
+<head>
+    <title>Dummy Web Api</title>
+    <meta charset="utf-8" />
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/app.js"></script>
+</head>
+<body ng-controller="productsCtrl">
+    <h1>Products</h1>
+    <a id="addNew" href="#" ng-click="beginEdit(-1)">Add New</a>
+    <table id="tbl">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th colspan="2">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in products">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td><a href="" ng-click="beginEdit(product.id)">Edit</a>&nbsp;<a href="" ng-click="delete(product.id)">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="editor" ng-show="showEditor">
+        <form id="productForm">
+            <label for="name">Name:</label>
+            <input id="productName" name="name" type="text" ng-model="product.name">
+            <button id="add" ng-show="product.id === undefined" ng-click="add()">Add</button>&nbsp;<button id="Close" ng-click="hideEditor()">Cancel</button>
+        </form>
+    </div>
+</body>
+</html>
