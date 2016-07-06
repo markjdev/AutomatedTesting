@@ -20,7 +20,7 @@
             <tr ng-repeat="product in products">
                 <td>{{product.id}}</td>
                 <td>{{product.name}}</td>
-                <td><a href="" ng-click="beginEdit(product.id)">Edit</a>&nbsp;<a href="" ng-click="delete(product.id)">Delete</a></td>
+                <td><a id="edit{{product.id}}" href="" ng-click="beginEdit(product.id)">Edit</a>&nbsp;<a href="" ng-click="delete(product.id)">Delete</a></td>
             </tr>
         </tbody>
     </table>
