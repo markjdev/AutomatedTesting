@@ -2,7 +2,7 @@ var selenium = require('selenium-webdriver');
 var chromedriver = require('chromedriver');
 var baseUrl = 'http://localhost:57831/';
 
-describe('Home Page Test', function() {
+describe('Products page test', function() {
 
     // Open the TECH.insight website in the browser before each test is run
     beforeEach(function(done) {
@@ -18,19 +18,29 @@ describe('Home Page Test', function() {
         this.driver.quit().then(done);
     });
 	
+	// Check the project page is shown
+	it('It should be on the products page', function(done) {
+		this.driver.findElement(selenium.By.tagName('table'))
+		.then(function(ele) {
+			ele.getAttribute('id').then(function(id) {
+				expect(id).toBe('tbl');
+				done();
+			});
+		}, function (err){
+			expect(err).toBeNull();
+		});
+
+	});
+	
 	// Test the add new functionality
 	it('It should be on the products page', function(done) {
-		var element = this.driver.findElement(selenium.By.tagName('table'));
-
-		element.getAttribute('id').then(function(id) {
-			expect(id).toBe('tbl');
-			done();
-		});
 		
 		// Check there are 2 items
 		this.driver.findElements(selenium.By.xpath("//table[@id='tbl']/tbody/tr")).then(function (elems){
 			expect(elems.length).toBe(2);
 			done();
+		}, function (err){
+			expect(err).toBeNull();
 		});
 		
 		
@@ -44,12 +54,16 @@ describe('Home Page Test', function() {
 		this.driver.findElements(selenium.By.xpath("//table[@id='tbl']/tbody/tr")).then(function (elems){
 			expect(elems.length).toBe(3);
 			done();
+		}, function (err){
+			expect(err).toBeNull();
 		});
 		
 		// Check the new product has appeared
 		this.driver.findElements(selenium.By.xpath("//table[@id='tbl']/tbody/tr/td[text()='Flange']")).then(function (elems){
 			expect(elems.length).toBe(1);
 			done();
+		}, function (err){
+			expect(err).toBeNull();
 		});
 	});
 });
